@@ -20,10 +20,10 @@
 
     const map = new mapboxgl.Map({
       container: document.body,
-      style: "mapbox://styles/mapbox/light-v9",
-      center: [-122.4, 37.79],
-      zoom: 15,
-      pitch: 60,
+      style: "mapbox://styles/niko-dellic/cl9t226as000x14pr1hgle9az", // style URL
+      center: [-71.10326, 42.36476], // starting position [lng, lat]
+      zoom: 12, // starting zoom
+      projection: "globe", // display the map as a 3D globe
     });
 
     map.on("load", () => {
