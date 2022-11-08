@@ -89,11 +89,6 @@ body {
         overflow-y: auto;
     }
 
-    #map {
-        width: 100vw;
-        height: 100vh;
-    }
-
     #form {
         width: 100%;
     }

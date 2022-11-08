@@ -31,8 +31,10 @@ JF.getFormSubmissions("223067547406053", function (responses) {
     submissions.push(submissionProps);
   }
 
+  // Import Layers
   const { MapboxLayer, ScatterplotLayer } = deck;
 
+  // mapbox access token
   mapboxgl.accessToken =
     "pk.eyJ1Ijoibmlrby1kZWxsaWMiLCJhIjoiY2w5c3p5bGx1MDh2eTNvcnVhdG0wYWxkMCJ9.4uQZqVYvQ51iZ64yG8oong";
 
