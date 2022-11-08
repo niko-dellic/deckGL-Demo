@@ -74,18 +74,14 @@ JF.getFormSubmissions("223067547406053", function (responses) {
           depthTest: false,
         },
         onClick: (info) => {
-          getImageGallery(
-            info.object.fileUpload,
-            info.object.describeWhat,
-            (preview = false)
-          );
+          getImageGallery(info.object.fileUpload, info.object.describeWhat);
           flyToClick(info.object["Location Coordinates"]);
         },
       }),
       firstLabelLayerId
     );
 
-    function getImageGallery(images, text, preview = false) {
+    function getImageGallery(images, text) {
       const imageGallery = document.createElement("div");
       imageGallery.id = "image-gallery";
 
@@ -109,13 +105,32 @@ JF.getFormSubmissions("223067547406053", function (responses) {
       textDiv.style.right = "0";
       textDiv.style.borderRadius = "0";
       textDiv.style.padding = "2rem";
+      textDiv.style.fontSize = "2rem";
 
       imageGallery.appendChild(textDiv);
 
-      // for closing the image gallery (only for click)
-      imageGallery.addEventListener("click", function () {
-        imageGallery.remove();
+      //   add exit button to image gallery
+      const exitButton = document.createElement("button");
+      exitButton.id = "exit-button";
+      exitButton.innerHTML = "X";
+      exitButton.addEventListener("click", () => {
+        document.getElementById("image-gallery").remove();
       });
+
+      //   stylize the exit button to look good
+      exitButton.style.position = "fixed";
+      exitButton.style.top = "0";
+      exitButton.style.right = "0";
+      exitButton.style.borderRadius = "0";
+      exitButton.style.padding = "1rem";
+      exitButton.style.fontSize = "2rem";
+      exitButton.style.fontWeight = "bold";
+      exitButton.style.backgroundColor = "white";
+      exitButton.style.border = "none";
+      exitButton.style.cursor = "pointer";
+
+      imageGallery.appendChild(exitButton);
+
       // append the image gallery to the body
       document.body.appendChild(imageGallery);
     }
@@ -131,7 +146,7 @@ JF.getFormSubmissions("223067547406053", function (responses) {
     function addUserLocation(latitude, longitude) {
       return map.addLayer(
         new MapboxLayer({
-          id: "circle",
+          id: "user-location",
           type: ScatterplotLayer,
           data: [{ longitude, latitude }],
           getPosition: (d) => [d.longitude, d.latitude],
@@ -145,9 +160,6 @@ JF.getFormSubmissions("223067547406053", function (responses) {
           filled: true,
           radiusScale: 3,
           getFillColor: [3, 202, 252],
-          pickable: true,
-          autoHighlight: true,
-          highlightColor: [255, 255, 255, 255],
           parameters: {
             depthTest: false,
           },
