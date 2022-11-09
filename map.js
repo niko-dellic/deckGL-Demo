@@ -98,7 +98,6 @@ JF.getFormSubmissions("223067547406053", function (responses) {
       textDiv.innerHTML = text;
 
       // add fixed styling if in modal view
-
       textDiv.style.position = "fixed";
       textDiv.style.top = "0";
       textDiv.style.left = "0";
@@ -211,14 +210,7 @@ JF.getFormSubmissions("223067547406053", function (responses) {
       }
     });
 
-    // add a button to take you to the next page
-    const nextButton = document.createElement("a");
-    nextButton.textContent = "Submit a request";
-    nextButton.id = "next-button";
-    nextButton.href = "./form.html";
-
     // append the button
     document.body.appendChild(locationButton);
-    document.body.appendChild(nextButton);
   });
 });
